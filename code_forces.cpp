@@ -1,47 +1,52 @@
 #include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int n,x,y,z;
+    int n;
     cin>>n;
-    int count=0;
+    int x=0;
+    string str;
     while(n--){
-        cin>>x>>y>>z;
-        if(x+y+z>=2) count++;
+        cin>>str;
+        if(str=="X++") x++;
+        else if(str=="++X") ++x;
+        else if(str=="X--") x--;
+        else if(str=="--X") --x;
     }
-    cout<<count;
+    cout<<x;
 }
 /*
-One day three best friends Petya, Vasya and Tonya decided to form a team and take part in programming contests. Participants are usually offered several problems
-during programming contests. Long before the start the friends decided that they will implement a problem if at least two of them are sure about the solution. 
-Otherwise, the friends won't write the problem's solution.
-This contest offers n problems to the participants. For each problem we know, which friend is sure about the solution. Help the friends find the number of 
-problems for which they will write a solution.
+The classic programming language of Bitland is Bit++. This language is so peculiar and complicated.
+The language is that peculiar as it has exactly one variable, called x. Also, there are two operations:
+Operation ++ increases the value of variable x by 1.
+Operation -- decreases the value of variable x by 1.
+A statement in language Bit++ is a sequence, consisting of exactly one operation and one variable x. The statement is written without spaces, that is, it can 
+only contain characters "+", "-", "X". Executing a statement means applying the operation it contains.
+A programme in Bit++ is a sequence of statements, each of them needs to be executed. Executing a programme means executing all the statements it contains.
+You're given a programme in language Bit++. The initial value of x is 0. Execute the programme and find its final value (the value of the variable when this 
+programme is executed).
 
 Input
-The first input line contains a single integer n (1 ≤ n ≤ 1000) — the number of problems in the contest. Then n lines contain three integers each, each integer 
-is either 0 or 1. If the first number in the line equals 1, then Petya is sure about the problem's solution, otherwise he isn't sure. The second number shows 
-Vasya's view on the solution, the third number shows Tonya's view. The numbers on the lines are separated by spaces.
+The first line contains a single integer n (1 ≤ n ≤ 150) — the number of statements in the programme.
+Next n lines contain a statement each. Each statement contains exactly one operation (++ or --) and exactly one variable x (denoted as letter «X»). 
+Thus, there are no empty statements. The operation and the variable can be written in any order.
 
 Output
-Print a single integer — the number of problems the friends will implement on the contest.
+Print a single integer — the final value of x.
 
 Examples
 
 Input
-3
-1 1 0
-1 1 1
-1 0 0
-
-Output
-2
-
-Input
-2
-1 0 0
-0 1 1
+1
+++X
 
 Output
 1
 
+Input
+2
+X++
+--X
+
+Output
+0
 */

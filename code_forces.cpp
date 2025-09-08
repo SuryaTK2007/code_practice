@@ -3,50 +3,57 @@ using namespace std;
 int main(){
     int n;
     cin>>n;
-    int x=0;
-    string str;
+    int a,b;
+    vector<int>res;
     while(n--){
-        cin>>str;
-        if(str=="X++") x++;
-        else if(str=="++X") ++x;
-        else if(str=="X--") x--;
-        else if(str=="--X") --x;
+        cin>>a>>b;
+        if(a==b) res.push_back(0);
+        else if(a%b==0 || b%a==0) res.push_back(1);
+        else res.push_back(2);
     }
-    cout<<x;
+    for(int x:res){
+        cout<<x<<" ";
+    }
 }
 /*
-The classic programming language of Bitland is Bit++. This language is so peculiar and complicated.
-The language is that peculiar as it has exactly one variable, called x. Also, there are two operations:
-Operation ++ increases the value of variable x by 1.
-Operation -- decreases the value of variable x by 1.
-A statement in language Bit++ is a sequence, consisting of exactly one operation and one variable x. The statement is written without spaces, that is, it can 
-only contain characters "+", "-", "X". Executing a statement means applying the operation it contains.
-A programme in Bit++ is a sequence of statements, each of them needs to be executed. Executing a programme means executing all the statements it contains.
-You're given a programme in language Bit++. The initial value of x is 0. Execute the programme and find its final value (the value of the variable when this 
-programme is executed).
+
+Maple has two positive integers a and b
+She may perform the following operation any number of times (possibly zero) to make a equal to b
+
+Choose any positive integer x, and multiply either a or b by x
+Your task is to determine the minimum number of operations required to make a equal to b
+It can be proven that this is always possible.
 
 Input
-The first line contains a single integer n (1 ≤ n ≤ 150) — the number of statements in the programme.
-Next n lines contain a statement each. Each statement contains exactly one operation (++ or --) and exactly one variable x (denoted as letter «X»). 
-Thus, there are no empty statements. The operation and the variable can be written in any order.
+Each test contains multiple test cases. The first line contains the number of test cases t(1≤t≤100). 
+The description of the test cases follows.
+
+The first and only line of each test case contains two positive integers a
+ and b (1≤a,b≤1000) — the numbers Maple currently has.
 
 Output
-Print a single integer — the final value of x.
+For each test case, output a single integer representing the minimum number of operations Maple needs to make a equal to b
 
-Examples
+Example
 
 Input
-1
-++X
+3
+1 2
+10 3
+1000 1000
 
 Output
 1
-
-Input
 2
-X++
---X
-
-Output
 0
+Note
+In the first test case, you can multiply a=1 by 2 to obtain a=b=2
+This requires one operation.
+
+In the second test case, you can multiply a=10 by 300 to get a=3000, then multiply b=3 by 1000 to get b=3000. 
+This requires two operations. Note that the numbers may exceed 1000
+after the operations.
+
+In the third test case, a and b are already equal, so no operations are required.
+
 */

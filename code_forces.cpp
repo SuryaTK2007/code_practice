@@ -1,64 +1,55 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int main() {
-    int t;
-    if (!(cin >> t)) return 0;
-    while (t--) {
-        int n; string s;
-        cin >> n >> s;
-        int cnt0 = 0;
-        for (char c : s) if (c == '0') ++cnt0;
-        int misplaced = 0;                 
-        for (int i = 0; i < cnt0; ++i)
-            if (s[i] == '1') ++misplaced;
-        cout << misplaced << '\n';
+int main(){
+    int n;
+    vector<int>temp;
+    int x;
+    int score;
+    cin>>n>>x;
+    while(n--){
+        cin>>score;
+        temp.push_back(score);
     }
-    return 0;
+    int border=temp[x-1];
+    int count=0;
+    for(int i=0; i<temp.size(); i++){
+        if(temp[i]>=border && temp[i]>0){
+            count++;
+        }
+    }
+    cout<<count;
 }
-
 /*
-Problem
 
-You are given a binary string s of length n. You are allowed to perform the following operation any number of times (including zero):
-Choose three indices 1 ≤ i < j < k ≤ n.
-Perform a cyclic shift (either left or right) on the values at positions s[i], s[j], s[k].
-
-For example, if s = 110110:
-Choosing (i=1, j=2, k=3) and performing a right shift cyclically → 011110
-Choosing (i=4, j=5, k=6) and performing a left shift cyclically → 110101
-
-Your task is to determine the minimum number of operations required to sort the given binary string in non-decreasing order (all 0s first, then all 1s).
+"Contestant who earns a score equal to or greater than the k-th place finisher's score will advance to the next round, as long as the contestant earns a positive score..." 
+— an excerpt from contest rules.
+A total of n participants took part in the contest (n ≥ k), and you already know their scores. Calculate how many participants will advance to the next round.
 
 Input
-The first line contains an integer t — the number of test cases (1 ≤ t ≤ 100).
-Each test case consists of:
-An integer n (3 ≤ n ≤ 100) — the length of the string.
-A binary string s of length n.
+The first line of the input contains two integers n and k (1 ≤ k ≤ n ≤ 50) separated by a single space.
+The second line contains n space-separated integers a1, a2, ..., an (0 ≤ ai ≤ 100), where ai is the score earned by the participant who got the i-th place. 
+The given sequence is non-increasing (that is, for all i from 1 to n - 1 the following condition is fulfilled: ai ≥ ai + 1).
 
 Output
-For each test case, print a single integer — the minimum number of operations required to sort the binary string.
+Output the number of participants who advance to the next round.
 
 Examples
+
 Input
-4
-3
-001
-4
-0110
+8 5
+10 9 8 7 7 7 5 5
+
+Output
 6
-110100
-6
-101011
+
+Input
+4 2
+0 0 0 0
 
 Output
 0
-1
-2
-1
 
-Explanation
-Test case 1: s = "001" is already sorted → 0 operations.
-Test case 2: Choose (i=1, j=2, k=4) and perform a right cyclic shift → string becomes 0011, which is sorted.
-Test case 3: Needs 2 operations to move misplaced 1s and 0s.
-Test case 4: Can be fixed in 1 operation.
+Note
+In the first example the participant on the 5th place earned 7 points. As the participant on the 6th place also earned 7 points, there are 6 advancers.
+
 */

@@ -1,36 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
-int main(){
-    int m,n;
-    cin>>m>>n;
-    cout<<(m*n)/2;
+int main()
+{
+    vector<vector<int>>matrix(5, vector<int>(5));
+    int one_x, one_y;
+    for(int i=0; i<5; i++){
+        for(int j=0; j<5; j++){
+            cin>>matrix[i][j];
+            if(matrix[i][j]==1){
+                one_x=i;
+                one_y=j;
+            }
+        }
+    }
+    int spot_x=2, spot_y=2;
+    int res_x=(spot_x>one_x)?spot_x-one_x:one_x-spot_x;
+    int res_y=(spot_y>one_y)?spot_y-one_y:one_y-spot_y;
+    cout<<res_x+res_y;
 }
 /*
+You've got a 5 × 5 matrix, consisting of 24 zeroes and a single number one. Let's index the matrix rows by numbers from 1 to 5 from top to bottom, let's index the matrix 
+columns by numbers from 1 to 5 from left to right. In one move, you are allowed to apply one of the two following transformations to the matrix:
 
-You are given a rectangular board of M × N squares. Also you are given an unlimited number of standard domino pieces of 2 × 1 squares. You are allowed to rotate the pieces. 
-You are asked to place as many dominoes as possible on the board so as to meet the following conditions:
-1. Each domino completely covers two squares.
-2. No two dominoes overlap.
-3. Each domino lies entirely inside the board. It is allowed to touch the edges of the board.
-
-Find the maximum number of dominoes, which can be placed under these restrictions.
+Swap two neighboring matrix rows, that is, rows with indexes i and i + 1 for some integer i (1 ≤ i < 5).
+Swap two neighboring matrix columns, that is, columns with indexes j and j + 1 for some integer j (1 ≤ j < 5).
+You think that a matrix looks beautiful, if the single number one of the matrix is located in its middle (in the cell that is on the intersection of the third row and the 
+third column). Count the minimum number of moves needed to make the matrix beautiful.
 
 Input
-In a single line you are given two integers M and N — board sizes in squares (1 ≤ M ≤ N ≤ 16).
+The input consists of five lines, each line contains five integers: the j-th integer in the i-th line of the input represents the element of the matrix that is located on the 
+intersection of the i-th row and the j-th column. It is guaranteed that the matrix consists of 24 zeroes and a single number one.
 
 Output
-Output one number — the maximal number of dominoes, which can be placed.
+Print a single integer — the minimum number of moves needed to make the matrix beautiful.
 
 Examples
 
 Input
-2 4
+0 0 0 0 0
+0 0 0 0 1
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
 Output
-4
+3
 
 Input
-3 3
-Output
-4
+0 0 0 0 0
+0 0 0 0 0
+0 1 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+OutputCopy
+1
 
 */

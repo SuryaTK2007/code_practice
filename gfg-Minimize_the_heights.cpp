@@ -1,28 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 class Solution {
-public:
-    void dfs(vector<int>& arr, int k, int i, int &ans) {
+  public:
+    int getMinDiff(vector<int> &arr, int k) {
         int n = arr.size();
-        if (i == n) {
-            int mx = *max_element(arr.begin(), arr.end());
-            int mn = *min_element(arr.begin(), arr.end());
-            ans = min(ans, mx - mn);
-            return;
+        sort(arr.begin(), arr.end());
+        int ans = arr[n - 1] - arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] - k < 0) continue;
+            int smallest = min(arr[0] + k, arr[i] - k);             //The first part (0..i-1) gets +k.
+            int greatest = max(arr[n - 1] - k, arr[i - 1] + k);     //The second part (i..n-1) gets -k.
+            ans = min(ans, greatest - smallest);
         }
-        int org = arr[i];
-        arr[i] = org + k;
-        dfs(arr, k, i + 1, ans);
-        if (org - k >= 0) {
-            arr[i] = org - k;
-            dfs(arr, k, i + 1, ans);
-        }
-        arr[i] = org;
-    }
-
-    int getMinDiff(vector<int>& arr, int k) {
-        int ans = INT_MAX;
-        dfs(arr, k, 0, ans);
         return ans;
     }
 };

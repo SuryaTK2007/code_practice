@@ -9,27 +9,17 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-class Solution { 
+class Solution {
 public:
-    void helper(ListNode*& first, ListNode*& second) {
-        ListNode* temp = second->next;
-        second->next = first;
-        first->next = temp;
-    }
-
     ListNode* swapPairs(ListNode* head) {
-        if (!head || !head->next) return head;
-        ListNode* newHead = head->next;
-        ListNode* prev = nullptr;
-        while (head && head->next) {
-            ListNode* first = head;
-            ListNode* second = head->next;
-            helper(first, second);
-            if (prev) prev->next = second;
-            prev = first;
-            head = first->next;
+        ListNode* cur=head;
+        while(cur && cur->next){
+            int temp=cur->val;
+            cur->val=cur->next->val;
+            cur->next->val=temp;
+            cur=cur->next->next;
         }
-        return newHead;
+        return head;
     }
 };
 

@@ -6,32 +6,29 @@ using namespace std;
 
 class Solution {
 public:
+    void backtrack(const string& digits, int i, string& path, vector<string>& res, const vector<string>& phone) {
+        if (i == digits.size()) {
+            res.push_back(path);
+            return;
+        }
+        char digit = digits[i];
+        if (digit == '0' || digit == '1') {
+            backtrack(digits, i + 1, path, res, phone);
+            return;
+        }
+        string letters = phone[digit - '0'];
+        for (char ch : letters) {
+            path.push_back(ch);
+            backtrack(digits, i + 1, path, res, phone);
+            path.pop_back();
+        }
+    }
     vector<string> letterCombinations(string digits) {
         vector<string> res;
         if (digits.empty()) return res;
-
-        map<char, string> phone_map = {
-            {'2', "abc"}, {'3', "def"}, {'4', "ghi"},
-            {'5', "jkl"}, {'6', "mno"}, {'7', "pqrs"},
-            {'8', "tuv"}, {'9', "wxyz"}
-        };
-
-        string f_letter = phone_map.at(digits[0]);
-        for (char ch : f_letter) {
-            res.push_back(string(1, ch));
-        }
-
-        for (int i = 1; i < digits.size(); i++) {
-            string curr = phone_map.at(digits[i]);
-            vector<string> temp;
-            for (string x : res) {
-                for (char y : curr) {
-                    temp.push_back(x + y);
-                }
-            }
-            res = temp;
-        }
-
+        vector<string> phone = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string path;
+        backtrack(digits, 0, path, res, phone);
         return res;
     }
 };

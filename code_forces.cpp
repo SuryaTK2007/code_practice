@@ -2,51 +2,55 @@
 using namespace std;
 int main()
 {
-    string str1, str2;
-    cin>>str1>>str2;
-    transform(str1.begin(), str1.end(), str1.begin(), ::tolower);
-    transform(str2.begin(), str2.end(), str2.begin(), ::tolower);
-    if(str1<str2)
-        cout<<-1;
-    else if(str1>str2)
-        cout<<1;
-    else
-        cout<<0;
+    string s;
+    cin >> s;
+    set<char> distinct(s.begin(), s.end());
+    if (distinct.size() % 2 == 0) {
+        cout << "CHAT WITH HER!" << endl;
+    } else {
+        cout << "IGNORE HIM!" << endl;
+    }
+    return 0;
 }
 
 /*
-Little Petya loves presents. His mum bought him two strings of the same size for his birthday. The strings consist of uppercase and lowercase
-Latin letters. Now Petya wants to compare those two strings lexicographically. The letters' case does not matter, that is an uppercase letter is 
-considered equivalent to the corresponding lowercase letter. Help Petya perform the comparison.
+Those days, many boys use beautiful girls' photos as avatars in forums. So it is pretty hard to tell the gender of a user at the first glance. 
+Last year, our hero went to a forum and had a nice chat with a beauty (he thought so). After that they talked very often and eventually they 
+became a couple in the network.
+
+But yesterday, he came to see "her" in the real world and found out "she" is actually a very strong man! Our hero is very sad and he is too 
+tired to love again now. So he came up with a way to recognize users' genders by their user names.
+
+This is his method: if the number of distinct characters in one's user name is odd, then he is a male, otherwise she is a female. You are given 
+the string that denotes the user name, please help our hero to determine the gender of this user by his method.
 
 Input
-Each of the first two lines contains a bought string. The strings' lengths range from 1 to 100 inclusive. It is guaranteed that the strings are 
-of the same length and also consist of uppercase and lowercase Latin letters.
+The first line contains a non-empty string, that contains only lowercase English letters — the user name. This string contains at most 100 
+letters.
 
 Output
-If the first string is less than the second one, print "-1". If the second string is less than the first one, print "1". If the strings are 
-equal, print "0". Note that the letters' case is not taken into consideration when the strings are compared.
+If it is a female by our hero's method, print "CHAT WITH HER!" (without the quotes), otherwise, print "IGNORE HIM!" (without the quotes).
 
 Examples
 
 Input
-aaaa
-aaaA
+wjmzbmr
 
 Output
-0
+CHAT WITH HER!
 
 Input
-abs
-Abz
+xiaodao
 
 Output
--1
+IGNORE HIM!
 
 Input
-abcdefg
-AbCdEfF
+sevenkplus
 
 Output
-1
+CHAT WITH HER!
+
+Note
+For the first example. There are 6 distinct characters in "wjmzbmr". These characters are: "w", "j", "m", "z", "b", "r". So wjmzbmr is a female and you should print "CHAT WITH HER!".
 */

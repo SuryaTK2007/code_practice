@@ -19,7 +19,6 @@ public:
         }
 
         maze[r][c] = 0; // mark visited
-
         for (int i = 0; i < 4; i++) {
             int nr = r + dr[i], nc = c + dc[i];
             if (isSafe(nr, nc, maze, n)) {
@@ -59,7 +58,6 @@ int main() {
 
     Solution obj;
     vector<string> paths = obj.ratInMaze(maze);
-
     if (paths.empty()) {
         cout << "No path found.\n";
     } else {

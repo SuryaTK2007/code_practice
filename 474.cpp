@@ -3,21 +3,23 @@ using namespace std;
 
 class Solution {
 public:
-    int helper(vector<string>& strs, int m, int n, int step, int count) {
-        if (step == strs.size()) return count;
+    int helper(vector<string>& strs, int m, int n, int step, vector<vector<vector<int>>>& dp) {
+        if (step == strs.size()) return 0;
+        if (dp[step][m][n] != -1) return dp[step][m][n];
         int zcount = 0, ocount = 0;
         for (char ch : strs[step]) {
             if (ch == '0') zcount++;
             else ocount++;
         }
-        int skip = helper(strs, m, n, step + 1, count);
+        int skip = helper(strs, m, n, step + 1, dp);
         int take = 0;
         if (m >= zcount && n >= ocount)
-            take = helper(strs, m - zcount, n - ocount, step + 1, count + 1);
-        return max(skip, take);
+            take = 1 + helper(strs, m - zcount, n - ocount, step + 1, dp);
+        return dp[step][m][n] = max(skip, take);
     }
     int findMaxForm(vector<string>& strs, int m, int n) {
-        return helper(strs, m, n, 0, 0);
+        vector<vector<vector<int>>> dp(strs.size() + 1, vector<vector<int>>(m + 1, vector<int>(n + 1, -1)));
+        return helper(strs, m, n, 0, dp);
     }
 };
 

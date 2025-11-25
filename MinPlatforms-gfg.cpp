@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    int minPlatform(vector<int>& arr, vector<int>& dep) {
+        int n = arr.size();
+        sort(arr.begin(), arr.end());
+        sort(dep.begin(), dep.end());
+        
+        int i = 0, j = 0;
+        int platforms = 0, maxPlatforms = 0;
+        
+        while (i < n && j < n) {
+            if (arr[i] <= dep[j]) {
+                platforms++;
+                maxPlatforms = max(maxPlatforms, platforms);
+                i++;
+            } else {
+                platforms--;
+                j++;
+            }
+        }
+        return maxPlatforms;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> arr(n), dep(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+    for (int i = 0; i < n; i++) cin >> dep[i];
+    Solution sol;
+    cout << sol.minPlatform(arr, dep) << endl;
+    return 0;
+}

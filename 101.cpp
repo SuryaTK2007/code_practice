@@ -10,29 +10,21 @@ struct TreeNode {
 
 class Solution {
 public:
-    vector<int> L, R;
-    int exp = -1e9;
-
-    void left(TreeNode* root) {
-        if (!root) { L.push_back(exp); return; }
-        L.push_back(root->val);
-        left(root->left);
-        left(root->right);
+    bool isMirror(TreeNode* a, TreeNode* b) {
+        if (!a && !b)
+            return true;
+        if (!a || !b)
+            return false;
+        return (a->val == b->val) && isMirror(a->left, b->right) &&
+               isMirror(a->right, b->left);
     }
-
-    void right(TreeNode* root) {
-        if (!root) { R.push_back(exp); return; }
-        R.push_back(root->val);
-        right(root->right);
-        right(root->left);
-    }
-
     bool isSymmetric(TreeNode* root) {
-        left(root->left);
-        right(root->right);
-        return L == R;
+        if (!root)
+            return true;
+        return isMirror(root->left, root->right);
     }
 };
+
 
 int main() {
     TreeNode* root = new TreeNode(1);

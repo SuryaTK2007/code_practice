@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+// height of binary tree=depth of binary tree-1
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -14,17 +14,9 @@ struct TreeNode {
 
 class Solution {
 public:
-    int helper(TreeNode* root){
-        if (root == nullptr) return 0;
-
-        int l = 1 + helper(root->left);
-        int r = 1 + helper(root->right);
-
-        return max(l, r);
-    }
-
     int maxDepth(TreeNode* root) {
-        return helper(root);
+        if (root == nullptr) return 0;
+        return 1 + max(maxDepth(root->left), maxDepth(root->right));
     }
 };
 

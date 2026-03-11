@@ -5,14 +5,24 @@ struct Node{
     vector<Node*>next;
 };
 int cnt=0;
+int mx=INT_MIN;
+int height(Node* root){
+    if(root==nullptr) return -1;
+    int ht=-1;
+    for(int i=0; i<root->next.size(); i++){
+        int cht=height(root->next[i]);
+        ht=max(cht, ht);
+    }
+    return ht+1;
+}
 void display(Node* root){
     if(root==nullptr) return;
     cnt++;
     cout<<root->data<<" ";
+    mx=max(mx, root->data);
     for(int i=0; i<root->next.size(); i++){
         display(root->next[i]);
     }
-    // count++;
 }
 int main(){
     Node* root=nullptr;
@@ -35,5 +45,8 @@ int main(){
         }
     }
     display(root);
-    cout<<"\n"<<cnt;
+    cout<<"\n"<<"Number of Nodes: "<<cnt;
+    cout<<"\n"<<"Maximum value: "<<mx;
+    cout<<"\n"<<"Height: "<<height(root);
+    cout<<endl;
 }

@@ -4,12 +4,15 @@ struct Node{
     int data;
     vector<Node*>next;
 };
+int cnt=0;
 void display(Node* root){
     if(root==nullptr) return;
+    cnt++;
     cout<<root->data<<" ";
     for(int i=0; i<root->next.size(); i++){
         display(root->next[i]);
     }
+    // count++;
 }
 int main(){
     Node* root=nullptr;
@@ -32,4 +35,5 @@ int main(){
         }
     }
     display(root);
+    cout<<"\n"<<cnt;
 }

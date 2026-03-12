@@ -5,11 +5,17 @@ struct Node{
     Node* left;
     Node* right;
 };
+int cnt=0;
 void display(Node* root){
     if(root==nullptr) return;
+    cnt++;
     cout<<root->data<<" ";
     display(root->left);
     display(root->right);
+}
+int height(Node* root){
+    if(root==nullptr) return 0;
+    return 1+max(height(root->left),height(root->right));
 }
 int main(){
     vector<int>val={50,25,12,-1,-1,37,30,-1,-1,-1,75,62,-1,70,-1,-1,87,-1,-1};
@@ -46,4 +52,8 @@ int main(){
     }
     display(root);
     cout<<endl;
+    int h=height(root);
+    cout<<h;
+    cout<<endl;
+    cout<<cnt<<endl;
 }

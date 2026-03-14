@@ -24,6 +24,21 @@ void display(Node* root){
         display(root->next[i]);
     }
 }
+void level(Node* root){
+    queue<Node*>q;
+    q.push(root);
+    while(q.size()!=0){
+        int n=q.size();
+        for(int i=0; i<n; i++){
+            Node* temp=q.front();
+            cout<<temp->data<<" ";
+            q.pop();
+            for(int i=0; i<temp->next.size(); i++){
+                if(temp->next[i]) q.push(temp->next[i]);
+            }
+        }
+    }
+}
 int main(){
     Node* root=nullptr;
     stack<Node*>st;
@@ -47,6 +62,8 @@ int main(){
     display(root);
     cout<<"\n"<<"Number of Nodes: "<<cnt;
     cout<<"\n"<<"Maximum value: "<<mx;
-    cout<<"\n"<<"Height: "<<height(root);
+    cout<<"\n"<<"Height: "<<height(root)<<endl;
+    cout<<"Level Order: ";
+    level(root);
     cout<<endl;
 }

@@ -39,6 +39,13 @@ void level(Node* root){
         }
     }
 }
+void mirror(Node* root){
+    if(root==nullptr) return;
+    for(int i=0; i<root->next.size(); i++){
+        mirror(root->next[i]);
+    }
+    reverse(root->next.begin(), root->next.end());
+}
 int main(){
     Node* root=nullptr;
     stack<Node*>st;
@@ -65,5 +72,8 @@ int main(){
     cout<<"\n"<<"Height: "<<height(root)<<endl;
     cout<<"Level Order: ";
     level(root);
+    cout<<endl;
+    mirror(root);
+    display(root);
     cout<<endl;
 }

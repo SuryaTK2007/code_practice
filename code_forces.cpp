@@ -1,60 +1,83 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int main(){
-    string inp;
-    cin >> inp;
-    int cnt1 = 0; //upper_case
-    int cnt2 = 0; //lower_case
-    string res = "";
-    for (char ch : inp)
-    {
-        if(ch>='A' && ch<='Z')
-            cnt1++;
-        if(ch>='a' && ch<='z')
-            cnt2++;
-    }
-    if(cnt1>cnt2){
-        for(char ch: inp){
-            res += toupper(ch);
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<int> a(n);
+        int even = 0, odd = 0;
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+            if (a[i] % 2 == 0)
+                even++;
+            else
+                odd++;
         }
-    }
-    else{
-        for(char ch: inp){
-            res += tolower(ch);
+        int evenPos = (n + 1) / 2;
+        int oddPos = n / 2;
+        if (even != evenPos || odd != oddPos) {
+            cout << -1 << endl;
+            continue;
         }
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0 && a[i] % 2 != 0)
+                ans++;
+        }
+        cout << ans << endl;
     }
-    cout << res;
 }
 
 /*
-Vasya is very upset that many people on the Net mix uppercase and lowercase letters in one word. That's why he decided to 
-invent an extension for his favorite browser that would change the letters' register in every word so that it either only 
-consisted of lowercase letters or, vice versa, only of uppercase ones. At that as little as possible letters should be changed 
-in the word. For example, the word HoUse must be replaced with house, and the word ViP — with VIP. If a word contains an equal 
-number of uppercase and lowercase letters, you should replace all the letters with lowercase ones. For example, maTRIx should 
-be replaced by matrix. Your task is to use the given method on one given word.
+You are given an array a[0…n−1] of length n which consists of non-negative integers. Note that array indices start from zero.
+
+An array is called good if the parity of each index matches the parity of the element at that index. More formally, an array is good if for all i
+(0≤i≤n−1) the equality imod2=a[i]mod2 holds, where xmod2 is the remainder of dividing x by 2.
+
+For example, the arrays [0,5,2,1] and [0,17,0,3] are good, and the array [2,4,6,7] is bad, because for i=1, the parities of i and 
+a[i] are different: imod2=1mod2=1 , but a[i]mod2=4mod2=0.
+
+In one move, you can take any two elements of the array and swap them (these elements are not necessarily adjacent).
+
+Find the minimum number of moves in which you can make the array a good, or say that this is not possible.
 
 Input
-The first line contains a word s — it consists of uppercase and lowercase Latin letters and possesses the length from 1 to 100.
+The first line contains a single integer t (1≤t≤1000) — the number of test cases in the test. Then t test cases follow.
+
+Each test case starts with a line containing an integer n (1≤n≤40) — the length of the array a.
+
+The next line contains n integers a0,a1,…,an−1 (0≤ai≤1000) — the initial array.
 
 Output
-Print the corrected word s. If the given word s has strictly more uppercase letters, make the word written in the uppercase register, otherwise - in the lowercase one.
+For each test case, output a single integer — the minimum number of moves to make the given array a good, or -1 if this is not possible.
 
-Examples
+Example
 
 Input
-HoUse
-Output
-house
+4
+4
+3 2 7 6
+3
+3 2 6
+1
+7
+7
+4 9 2 1 18 3 0
 
-Input
-ViP
 Output
-VIP
+2
+1
+-1
+0
 
-Input
-maTRIx
-Output
-matrix
+Note
+In the first test case, in the first move, you can swap the elements with indices 0 and 1, and in the second move, you can swap the elements with 
+indices 2 and 3.
+
+In the second test case, in the first move, you need to swap the elements with indices 0 and 1.
+In the third test case, you cannot make the array good.
 
 */

@@ -1,56 +1,60 @@
 #include<bits/stdc++.h>
 using namespace std;
-int main()
-{
-    string s;
-    cin >> s;
-    set<char> distinct(s.begin(), s.end());
-    if (distinct.size() % 2 == 0) {
-        cout << "CHAT WITH HER!" << endl;
-    } else {
-        cout << "IGNORE HIM!" << endl;
+int main(){
+    string inp;
+    cin >> inp;
+    int cnt1 = 0; //upper_case
+    int cnt2 = 0; //lower_case
+    string res = "";
+    for (char ch : inp)
+    {
+        if(ch>='A' && ch<='Z')
+            cnt1++;
+        if(ch>='a' && ch<='z')
+            cnt2++;
     }
-    return 0;
+    if(cnt1>cnt2){
+        for(char ch: inp){
+            res += toupper(ch);
+        }
+    }
+    else{
+        for(char ch: inp){
+            res += tolower(ch);
+        }
+    }
+    cout << res;
 }
 
 /*
-Those days, many boys use beautiful girls' photos as avatars in forums. So it is pretty hard to tell the gender of a user at the first glance. 
-Last year, our hero went to a forum and had a nice chat with a beauty (he thought so). After that they talked very often and eventually they 
-became a couple in the network.
-
-But yesterday, he came to see "her" in the real world and found out "she" is actually a very strong man! Our hero is very sad and he is too 
-tired to love again now. So he came up with a way to recognize users' genders by their user names.
-
-This is his method: if the number of distinct characters in one's user name is odd, then he is a male, otherwise she is a female. You are given 
-the string that denotes the user name, please help our hero to determine the gender of this user by his method.
+Vasya is very upset that many people on the Net mix uppercase and lowercase letters in one word. That's why he decided to 
+invent an extension for his favorite browser that would change the letters' register in every word so that it either only 
+consisted of lowercase letters or, vice versa, only of uppercase ones. At that as little as possible letters should be changed 
+in the word. For example, the word HoUse must be replaced with house, and the word ViP — with VIP. If a word contains an equal 
+number of uppercase and lowercase letters, you should replace all the letters with lowercase ones. For example, maTRIx should 
+be replaced by matrix. Your task is to use the given method on one given word.
 
 Input
-The first line contains a non-empty string, that contains only lowercase English letters — the user name. This string contains at most 100 
-letters.
+The first line contains a word s — it consists of uppercase and lowercase Latin letters and possesses the length from 1 to 100.
 
 Output
-If it is a female by our hero's method, print "CHAT WITH HER!" (without the quotes), otherwise, print "IGNORE HIM!" (without the quotes).
+Print the corrected word s. If the given word s has strictly more uppercase letters, make the word written in the uppercase register, otherwise - in the lowercase one.
 
 Examples
 
 Input
-wjmzbmr
-
+HoUse
 Output
-CHAT WITH HER!
+house
 
 Input
-xiaodao
-
+ViP
 Output
-IGNORE HIM!
+VIP
 
 Input
-sevenkplus
-
+maTRIx
 Output
-CHAT WITH HER!
+matrix
 
-Note
-For the first example. There are 6 distinct characters in "wjmzbmr". These characters are: "w", "j", "m", "z", "b", "r". So wjmzbmr is a female and you should print "CHAT WITH HER!".
 */

@@ -7,27 +7,26 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        vector<int> arr(n);
+        vector<string> arr;
+        string x;
+        int count = 0;
         for (int i = 0; i < n; i++)
-            cin >> arr[i];
-        bool ok = true;
-        int evenI = arr[0] % 2;
-        for (int i = 0; i < n; i += 2) {
-            if (arr[i] % 2 != evenI) {
-                ok = false;
-                break;
+        {
+            cin >> x;
+            arr.push_back(x);
+        }
+        for (int i = 0; i < n; i++){
+            string s = arr[i];
+            for (int j = i + 1; j < n; j++)
+            {
+                string temp = arr[j];
+                if(s[0]!=temp[0] && s[1]==temp[1])
+                    count++;
+                if(s[1]!=temp[1] && s[0]==temp[0])
+                    count++;
             }
         }
-        if (ok && n > 1) {
-            int oddI = arr[1] % 2;
-            for (int i = 1; i < n; i += 2) {
-                if (arr[i] % 2 != oddI) {
-                    ok = false;
-                    break;
-                }
-            }
-        }
-        cout << (ok ? "YES" : "NO") << '\n';
+        cout << count << endl;
     }
     return 0;
 }

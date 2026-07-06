@@ -7,26 +7,28 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        vector<string> arr;
-        string x;
-        int count = 0;
+        vector<int> a(n);
         for (int i = 0; i < n; i++)
-        {
-            cin >> x;
-            arr.push_back(x);
-        }
-        for (int i = 0; i < n; i++){
-            string s = arr[i];
-            for (int j = i + 1; j < n; j++)
-            {
-                string temp = arr[j];
-                if(s[0]!=temp[0] && s[1]==temp[1])
-                    count++;
-                if(s[1]!=temp[1] && s[0]==temp[0])
-                    count++;
+            cin >> a[i];
+
+        int left = 0, right = n - 1;
+        long long leftSum = 0, rightSum = 0;
+        int ans = 0;
+        
+        while (left <= right) {
+            if (leftSum <= rightSum) {
+                leftSum += a[left];
+                left++;
+            } else {
+                rightSum += a[right];
+                right--;
             }
+
+            if (leftSum == rightSum)
+                ans = left + (n - right - 1);
         }
-        cout << count << endl;
+
+        cout << ans << endl;
     }
     return 0;
 }

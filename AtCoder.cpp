@@ -1,16 +1,17 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-int main(){
-    int n;
-    cin >> n;
-    int val1 = n % 5;
-    int val2 = 5 - (n % 5);
-    if(val1 < val2)
-    {
-        cout << n - val1;
-    }
-    else
-    {
-        cout << n + val2;
-    }
+
+int main() {
+    int hr = 21;
+    int mn = 0;
+    int k;
+    cin >> k;
+    int reshr = k / 60;
+    int resmin = k % 60;
+    hr += reshr;
+    mn += resmin;
+    cout << hr << ":";
+    if (mn < 10)
+        cout << "0";
+    cout << mn;
 }

@@ -7,13 +7,22 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        if(n >= 1900)
-            cout << "Division 1"<<endl;
-        else if(n>=1600 && n<=1899)
-            cout << "Division 2"<<endl;
-        else if(n>=1400 && n<=1599)
-            cout << "Division 3"<<endl;
-        else
-            cout << "Division 4"<<endl;
+        unordered_map<int, int> mp;
+        for (int i = 0; i < n; i++) {
+            int x;
+            cin >> x;
+            mp[x]++;
+        }
+        bool found = false;
+        for (auto i : mp) {
+            if (i.second >= 3) {
+                cout << i.first << '\n';
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            cout << -1 << '\n';
     }
+    return 0;
 }

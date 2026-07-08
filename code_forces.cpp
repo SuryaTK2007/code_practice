@@ -5,30 +5,22 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        vector<int> a(n);
-        for (int i = 0; i < n; i++)
-            cin >> a[i];
+        int n, h, m;
+        cin >> n >> h >> m;
+        int current = h * 60 + m;
+        int ans = 24 * 60;
+        while (n--) {
+            int ah, am;
+            cin >> ah >> am;
+            int alarm = ah * 60 + am;
+            int diff = alarm - current;
+            if (diff < 0)
+                diff += 24 * 60;
 
-        int left = 0, right = n - 1;
-        long long leftSum = 0, rightSum = 0;
-        int ans = 0;
-        
-        while (left <= right) {
-            if (leftSum <= rightSum) {
-                leftSum += a[left];
-                left++;
-            } else {
-                rightSum += a[right];
-                right--;
-            }
-
-            if (leftSum == rightSum)
-                ans = left + (n - right - 1);
+            ans = min(ans, diff);
         }
-
-        cout << ans << endl;
+        cout << ans / 60 << " " << ans % 60 << endl;
     }
+
     return 0;
 }

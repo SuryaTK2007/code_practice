@@ -1,24 +1,21 @@
 #include<bits/stdc++.h>
 using namespace std;
-struct Node{
-    int data;
-    Node* next;
-    Node(int val){
-        data=val;
-        next=NULL;
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<int> indegree(n+1,0);
+    vector<int> outdegree(n+1,0);
+    for(int i=0;i<m;i++)
+    {
+        int u,v;
+        cin>>u>>v;
+        outdegree[u]++;
+        indegree[v]++;
     }
-};
-int main(){
-    Node* head=new Node(1);
-    head->next=new Node(2);
-    head->next->next=new Node(3);
-    head->next->next->next=new Node(4);
-    head->next->next->next->next=new Node(5);
-    Node* temp=head;
-    while(temp!=nullptr){
-        cout<<temp->data<<" ";
-        temp=temp->next;
+    for(int i=1;i<=n;i++)
+    {
+        cout<<"Node "<<i<<": Indegree = "<<indegree[i]<<", Outdegree = "<<outdegree[i]<<endl;
     }
-    cout<<endl;
     return 0;
 }

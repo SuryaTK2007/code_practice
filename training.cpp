@@ -2,20 +2,31 @@
 using namespace std;
 int main()
 {
-    int n,m;
-    cin>>n>>m;
-    vector<int> indegree(n+1,0);
-    vector<int> outdegree(n+1,0);
-    for(int i=0;i<m;i++)
+    int n;
+    cin>>n;
+    vector<vector<int>> adj(n+1,vector<int>(n+1,0));
+    for(int i=1;i<=n;i++)
     {
-        int u,v;
-        cin>>u>>v;
-        outdegree[u]++;
-        indegree[v]++;
+        for(int j=1;j<=n;j++)
+        {
+            cin>>adj[i][j];
+        }
     }
     for(int i=1;i<=n;i++)
     {
-        cout<<"Node "<<i<<": Indegree = "<<indegree[i]<<", Outdegree = "<<outdegree[i]<<endl;
+        int indegree=0,outdegree=0;
+        for(int j=1;j<=n;j++)
+        {
+            if(adj[i][j]==1)
+            {
+                outdegree++;
+            }
+            if(adj[j][i]==1)
+            {
+                indegree++;
+            }
+        }
+        cout<<"Node "<<i<<": Indegree = "<<indegree<<", Outdegree = "<<outdegree<<endl;
     }
     return 0;
 }
